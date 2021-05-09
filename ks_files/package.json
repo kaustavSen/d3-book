@@ -1,0 +1,7 @@
+{
+  "name": "learning_d3",
+  "version": "1.0.0",
+  "dependencies": {
+     "d3": "^4.5.0"
+  }
+}
