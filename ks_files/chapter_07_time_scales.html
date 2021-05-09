@@ -1,0 +1,83 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="d3.js"></script>
+    <title>D3 Time Scales</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        //Width and height
+        var w = 500;
+        var h = 300;
+        var padding = 40;
+
+        var parseTime = d3.timeParse("%m/%d/%y");
+
+        var rowConverter = function (d) {
+            return {
+                Date: parseTime(d.Date),
+                Amount: parseInt(d.Amount)
+            };
+        }
+
+        var dataset;
+
+        d3.csv("time_scale_data.csv", rowConverter, function (data) {
+            dataset = data;
+
+            var xScale = d3.scaleTime()
+                .domain([
+                    d3.min(dataset, function (d) { return d.Date; }),
+                    d3.max(dataset, function (d) { return d.Date; })
+                ])
+                .range([padding, w - padding]);
+
+            var yScale = d3.scaleLinear()
+                .domain([
+                    d3.min(dataset, function(d) {return d.Amount;}),
+                    d3.max(dataset, function(d) {return d.Amount;})
+                ])
+                .range([h - padding, padding]);
+
+            var svg = d3.select("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+
+            svg.selectAll("circle")
+                .data(dataset)
+                .enter()
+                .append("circle")
+                .attr("cx", function (d) {
+                    return xScale(d.Date);
+                })
+                .attr("cy", function (d) {
+                    return yScale(d.Amount);
+                })
+                .attr("r", 2);
+
+            var formatTime = d3.timeFormat("%b %e");
+
+            svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append("text")
+                .text(function(d) {return formatTime(d.Date)})
+                .attr("x", function (d) {
+                    return xScale(d.Date);
+                })
+                .attr("y", function (d) {
+                    return yScale(d.Amount);
+                })
+                .attr("font-family", "Fira Mono")
+                .attr("font-size", "10px")
+                .attr("fill", "#bbb");
+        })
+    </script>
+
+</body>
+
+</html>
