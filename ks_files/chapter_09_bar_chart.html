@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>D3: A flexible, scalable bar chart</title>
+    <script type="text/javascript" src="d3.js"></script>
+    <style>
+        /* Importing custom fonts */
+        @import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+        p {
+            font-family: "PT Serif";
+            font-size: 0.75em;
+            font-weight: bold;
+            color: peru;
+        }
+
+        a.button5 {
+            font-family: "Staatliches";
+            font-size: 0.75em;
+            display: inline-block;
+            padding: 0.46em 1.6em;
+            border: 0.1em solid #000000;
+            margin: 0 0.2em 0.2em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            color: white;
+            text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+            background-color: #FFFFFF;
+            text-align: center;
+            transition: all 0.15s;
+        }
+
+        a.button5:hover {
+            text-shadow: 0 0 2em rgba(255, 255, 255, 1);
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+        }
+
+        @media all and (max-width:30em) {
+            a.button5 {
+                display: block;
+                margin: 0.4em auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href = "#" class="button5" style="background-color:#42cc8c;">New Data</a>
+    <p>
+        Click the above button update the chart with new data values as many
+        times as you like.
+    </p>
+    <script type="text/javascript" src="chapter_09_bar_chart.js"></script>
+</body>
+
+</html>
